@@ -8,7 +8,7 @@ RSpec.describe LocationService do
       expect(response).to be_a(Hash)
 
       expect(response).to have_key(:info)
-      expect(response[:info]).to to_be(String)
+      expect(response[:info]).to be_a(Hash)
 
       expect(response[:info]).to have_key(:statuscode)
       expect(response[:info][:statuscode]).to be_a(Integer)
@@ -24,16 +24,16 @@ RSpec.describe LocationService do
       expect(response[:results][0]).to have_key(:locations)
       expect(response[:results][0][:locations]).to be_a(Array)
 
-      expect(response[:results][0][:location][0]).to have_key(:LatLng)
-      expect(response[:results][0][:location][0][:LatLng]).to be_a(Hash)
+      expect(response[:results][0][:locations][0]).to have_key(:latLng)
+      expect(response[:results][0][:locations][0][:latLng]).to be_a(Hash)
 
-      expect(response[:results][0][:location][0][:LatLng]).to have_key(:lat)
-      expect(response[:results][0][:location][0][:LatLng][:lat]).to be_a(Float)
+      expect(response[:results][0][:locations][0][:latLng]).to have_key(:lat)
+      expect(response[:results][0][:locations][0][:latLng][:lat]).to be_a(Float)
 
-      expect(response[:results][0][:location][0][:LatLng]).to have_key(:lng)
-      expect(response[:results][0][:location][0][:LatLng][:lng]).to be_a(Float)
+      expect(response[:results][0][:locations][0][:latLng]).to have_key(:lng)
+      expect(response[:results][0][:locations][0][:latLng][:lng]).to be_a(Float)
 
-      expect(response[:results][:providedLocation][:location]).to_not have_key(:mapUrl)
+      expect(response[:results][0][:locations][0]).to_not have_key(:mapUrl)
     end
   end
 end
