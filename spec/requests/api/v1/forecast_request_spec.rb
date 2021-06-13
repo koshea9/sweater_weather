@@ -1,24 +1,22 @@
 require 'rails_helper'
 
 RSpec.describe "Forecast by location endpoint" do
-  before :each do
-    VCR.use_cassette("Denver weather") do
-
-      get '/api/v1/forecast?location=denver,co',
-      headers: {
-        'Content-Type' => 'application/json',
-        'Accept' => 'application/json'
-      }
-    end
-    @forecast_data = JSON.parse(response.body, symbolize_names: true)
-  end
-
   describe "happy path" do
     it "sends weather data based on location" do
-      expect(response).to be_successful
+      VCR.use_cassette("Denver weather") do
 
-      expect(@forecast_data).to be_a(Hash)
-      data = @forecast_data[:data]
+        get '/api/v1/forecast?location=denver,co',
+        headers: {
+          'Content-Type' => 'application/json',
+          'Accept' => 'application/json'
+        }
+      end
+      forecast_data = JSON.parse(response.body, symbolize_names: true)
+
+      expect(response).to be_successful
+      expect(forecast_data).to be_a(Hash)
+
+      data = forecast_data[:data]
       data_keys = [:id, :type, :attributes]
       expect(data.keys).to eq(data_keys)
 
@@ -60,6 +58,24 @@ RSpec.describe "Forecast by location endpoint" do
       expect(hourly_weather[4][:temperature]).to be_a(Float)
       expect(hourly_weather[4][:conditions]).to be_a(String)
       expect(hourly_weather[4][:icon]).to be_a(String)
+    end
+  end
+
+  describe "sad path" do
+    it "should handle errors when no location is provided" do
+      VCR.use_cassette("no forecast data response") do
+
+        get '/api/v1/forecast?location=',
+        headers: {
+          'Content-Type' => 'application/json',
+          'Accept' => 'application/json'
+        }
+      end
+      forecast_data = JSON.parse(response.body, symbolize_names: true)
+
+      expect(response.status).to eq(400)
+      expect(forecast_data).to be_a(Hash)
+      expect(forecast_data).to have_key :errors
     end
   end
 end
