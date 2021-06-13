@@ -4,6 +4,7 @@ class WeatherService
       req.params['lat'] = lat
       req.params['lon'] = lon
       req.params['exclude'] = 'minutely'
+      req.params['units'] = 'imperial'
     end
     parse_json(response)
   end

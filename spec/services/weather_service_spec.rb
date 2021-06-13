@@ -33,7 +33,7 @@ RSpec.describe WeatherService do
         expect(response[:current][:humidity]).to be_a(Integer)
         # uvi
         expect(response[:current]).to have_key(:uvi)
-        expect(response[:current][:uvi]).to be_a(Integer)
+        expect(response[:current][:uvi]).to be_a(Numeric)
         # visibility
         expect(response[:current]).to have_key(:visibility)
         expect(response[:current][:visibility]).to be_a(Integer)
