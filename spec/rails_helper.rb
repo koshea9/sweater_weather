@@ -8,7 +8,8 @@ require File.expand_path('../config/environment', __dir__)
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
 require 'capybara/rails'
-
+require 'webmock/rspec'
+require 'vcr'
 
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -67,6 +68,19 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+
+  VCR.configure do |config|
+    config.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
+    config.hook_into :webmock
+    config.filter_sensitive_data('<mapquest_consumer_key>') { ENV['mapquest_consumer_key'] }
+    config.filter_sensitive_data('<mapquest_consumer_secret>') { ENV['mapquest_consumer_secret'] }
+    config.filter_sensitive_data('<open_weather_api_key>') { ENV['open_weather_api_key'] }
+    config.filter_sensitive_data('<unsplash_access_key>') { ENV['unsplash_access_key'] }
+    config.filter_sensitive_data('<unsplash_secret_key>') { ENV['unsplash_secret_key'] }
+    config.default_cassette_options = { re_record_interval: 30.days }
+    config.configure_rspec_metadata!
+  end
+
   Shoulda::Matchers.configure do |config|
     config.integrate do |with|
       with.test_framework :rspec
