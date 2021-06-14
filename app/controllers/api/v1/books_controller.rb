@@ -1,4 +1,4 @@
-class Api::V1::BooksSearchController < ApplicationController
+class Api::V1::BooksController < ApplicationController
   def show
     conn = Faraday.new("http://openlibrary.org/")
 
@@ -8,23 +8,19 @@ class Api::V1::BooksSearchController < ApplicationController
       req.params['subject'] = "travel"
     end
     book_data = JSON.parse(response.body, symbolize_names: true)
-    require "pry"; binding.pry
     total_books_found = book_data[:numFound]
     books = [
     { isbn: book_data[:docs].map do |book|
           book[:isbn]
-        end
-      ],
+        end,
       title: book_data[:docs].map do |book|
         book[:title]
       end,
-      publisher: [
+      publisher:
         book_data[:docs].map do |book|
           book[:publisher]
         end
-      ]}
-    ]}
+      }]
+      require "pry"; binding.pry
   end
-  require "pry"; binding.pry
-
 end
