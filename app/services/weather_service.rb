@@ -9,7 +9,6 @@ class WeatherService
     parse_json(response)
   end
 
-  private
   def self.conn
     Faraday.new(
       url: 'https://api.openweathermap.org',

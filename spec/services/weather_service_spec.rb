@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe WeatherService do
-  describe "class methods" do
+  describe 'class methods' do
     it 'returns weather data given valide latitude and longitude paramters' do
       VCR.use_cassette('Denver weather') do
         lat = 39.738453

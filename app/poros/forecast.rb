@@ -29,13 +29,13 @@ class Forecast
   def daily(data)
     data[:daily].first(5).map do |day|
       {
-      date: Time.at(day[:dt]).strftime("%F"),
-      sunrise: Time.at(day[:sunrise]).strftime("%F"),
-      sunset: Time.at(day[:sunset]).strftime("%F"),
-      max_temp: day[:temp][:max],
-      min_temp: day[:temp][:min],
-      conditions: day[:weather][0][:description],
-      icon: day[:weather][0][:icon]
+        date: Time.at(day[:dt]).strftime('%F'),
+        sunrise: Time.at(day[:sunrise]).strftime('%F'),
+        sunset: Time.at(day[:sunset]).strftime('%F'),
+        max_temp: day[:temp][:max],
+        min_temp: day[:temp][:min],
+        conditions: day[:weather][0][:description],
+        icon: day[:weather][0][:icon]
       }
     end
   end
@@ -43,10 +43,10 @@ class Forecast
   def hourly(data)
     data[:hourly].first(8).map do |hour|
       {
-      time: Time.at(hour[:dt]).strftime("%T"),
-      temperature: hour[:temp],
-      conditions: hour[:weather][0][:description],
-      icon: hour[:weather][0][:icon]
+        time: Time.at(hour[:dt]).strftime('%T'),
+        temperature: hour[:temp],
+        conditions: hour[:weather][0][:description],
+        icon: hour[:weather][0][:icon]
       }
     end
   end

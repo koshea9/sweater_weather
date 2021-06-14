@@ -1,15 +1,14 @@
 require 'rails_helper'
 
-RSpec.describe "Forecast by location endpoint" do
-  describe "happy path" do
-    it "sends weather data based on location" do
-      VCR.use_cassette("Denver weather") do
-
+RSpec.describe 'Forecast by location endpoint' do
+  describe 'happy path' do
+    it 'sends weather data based on location' do
+      VCR.use_cassette('Denver weather') do
         get '/api/v1/forecast?location=denver,co',
-        headers: {
-          'Content-Type' => 'application/json',
-          'Accept' => 'application/json'
-        }
+            headers: {
+              'Content-Type' => 'application/json',
+              'Accept' => 'application/json'
+            }
       end
       forecast_data = JSON.parse(response.body, symbolize_names: true)
 
@@ -17,14 +16,14 @@ RSpec.describe "Forecast by location endpoint" do
       expect(forecast_data).to be_a(Hash)
 
       data = forecast_data[:data]
-      data_keys = [:id, :type, :attributes]
+      data_keys = %i[id type attributes]
       expect(data.keys).to eq(data_keys)
 
       expect(data[:id]).to eq(nil)
       expect(data[:type]).to eq('forecast')
 
       expect(data[:attributes]).to be_a(Hash)
-      attribute_keys = [:current_weather, :daily_weather, :hourly_weather]
+      attribute_keys = %i[current_weather daily_weather hourly_weather]
       expect(data[:attributes].keys).to eq(attribute_keys)
 
       current_weather = data[:attributes][:current_weather]
@@ -61,15 +60,14 @@ RSpec.describe "Forecast by location endpoint" do
     end
   end
 
-describe "sad path" do
-  it "should handle errors when no location is provided" do
-    VCR.use_cassette("no forecast data response") do
-
-      get '/api/v1/forecast?location=',
-      headers: {
-        'Content-Type' => 'application/json',
-        'Accept' => 'application/json'
-      }
+  describe 'sad path' do
+    it 'should handle errors when no location is provided' do
+      VCR.use_cassette('no forecast data response') do
+        get '/api/v1/forecast?location=',
+            headers: {
+              'Content-Type' => 'application/json',
+              'Accept' => 'application/json'
+            }
       end
       forecast_data = JSON.parse(response.body, symbolize_names: true)
 
