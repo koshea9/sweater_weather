@@ -7,7 +7,7 @@ class Books
   def initialize(location, quantity, forecast_data, book_data)
     @id = nil
     @destination = location
-    @forecast = forecast_data(location)
+    @forecast = forecast_info(forecast_data)
     @total_books_found = book_data[:numFound]
     @books = book_info(book_data, quantity)
   end
@@ -24,7 +24,11 @@ class Books
     end
   end
 
-  def forecast_data(location)
+  def forecast_info(forecast_data)
+    {
+      summary: forecast_data.current_weather[:conditions],
+      temperature: "#{forecast_data.current_weather[:temperature]} F"
+    }
   end
 
 end

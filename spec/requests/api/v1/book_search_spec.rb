@@ -13,7 +13,7 @@ RSpec.describe "Book search endpoint" do
       expect(book_data[:data]).to be_a(Hash)
 
       expect(book_data[:data]).to have_key(:id)
-      expect(book_data[:data][:id]).to eq("null")
+      expect(book_data[:data][:id]).to eq(nil)
 
       expect(book_data[:data]).to have_key(:type)
       expect(book_data[:data][:type]).to be_a(String)

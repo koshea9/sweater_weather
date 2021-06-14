@@ -12,6 +12,15 @@ RSpec.describe Books do
 
     book = Books.new(location, quantity, forecast_data, book_data)
 
+    expect(book.id).to eq(nil)
+    expect(book.destination).to eq(location)
+
+    expect(book.forecast).to be_a(Hash)
+    expect(book.forecast).to have_key(:summary)
+    expect(book.forecast[:summary]).to be_a(String)
+    expect(book.forecast).to have_key(:temperature)
+    expect(book.forecast[:temperature]).to be_a(String)
+
     expect(book.total_books_found).to be_a(Integer)
     expect(book.books).to be_a(Array)
     expect(book.books.length).to eq(5)
@@ -22,5 +31,8 @@ RSpec.describe Books do
     expect(book.books[0][:title]).to be_a(String)
     expect(book.books[0]).to have_key(:publisher)
     expect(book.books[0][:publisher]).to be_a(Array)
+
+
+
   end
 end
