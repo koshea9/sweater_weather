@@ -9,24 +9,16 @@ class Books
     @destination = location
     @forecast = forecast_data(location)
     @total_books_found = book_data[:numFound]
-    @books = book_data(book_data, quantity)
-    require "pry"; binding.pry
+    @books = book_info(book_data, quantity)
   end
 
-  def book_data(book_data, quantity)
-    # book_data[:docs].first(quantity.to_i) do |book|
-    #   { isbn: book_data[:docs].map do |book|
-    #         book[:isbn]
-    #       end,
-    #     title: book_data[:docs].map do |book|
-    #       book[:title]
-    #     end,
-    #     publisher:
-    #       book_data[:docs].map do |book|
-    #         book[:publisher]
-    #       end
-    #     }]
-    # end
+  def book_info(book_data, quantity)
+    book_data[:docs].first(quantity.to_i).map do |book|
+      require "pry"; binding.pry
+      {
+        isbn: book["test"]
+      }
+    end
   end
 
   def forecast_data(location)

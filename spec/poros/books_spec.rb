@@ -13,6 +13,10 @@ RSpec.describe Books do
     book = Books.new(location, quantity, forecast_data, book_data)
 
     expect(book.total_books_found).to be_a(Integer)
-    expect(book.books).to be_a(Hash)
+    expect(book.books).to be_a(Array)
+    expect(book.books[0]).to be_a(Hash)
+    expect(book.books[0]).to have_key(:isbn)
+    expect(book.books[0]).to have_key(:title)
+    expect(book.books[0]).to have_key(:publisher)
   end
 end
