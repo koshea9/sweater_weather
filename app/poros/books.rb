@@ -14,9 +14,12 @@ class Books
 
   def book_info(book_data, quantity)
     book_data[:docs].first(quantity.to_i).map do |book|
-      require "pry"; binding.pry
       {
-        isbn: book["test"]
+        isbn:
+          book[:isbn],
+        title: book[:title],
+        publisher:
+          book[:publisher]
       }
     end
   end
