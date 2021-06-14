@@ -8,19 +8,8 @@ class Api::V1::BooksController < ApplicationController
       req.params['subject'] = "travel"
     end
     book_data = JSON.parse(response.body, symbolize_names: true)
-    total_books_found = book_data[:numFound]
-    books = [
-    { isbn: book_data[:docs].map do |book|
-          book[:isbn]
-        end,
-      title: book_data[:docs].map do |book|
-        book[:title]
-      end,
-      publisher:
-        book_data[:docs].map do |book|
-          book[:publisher]
-        end
-      }]
-      require "pry"; binding.pry
+
+    books = BooksFacade.books_by_location(params[:location], params[:quantity])
+    
   end
 end
