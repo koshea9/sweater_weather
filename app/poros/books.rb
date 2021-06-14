@@ -30,5 +30,4 @@ class Books
       temperature: "#{forecast_data.current_weather[:temperature]} F"
     }
   end
-
 end
