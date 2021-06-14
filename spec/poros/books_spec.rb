@@ -31,8 +31,5 @@ RSpec.describe Books do
     expect(book.books[0][:title]).to be_a(String)
     expect(book.books[0]).to have_key(:publisher)
     expect(book.books[0][:publisher]).to be_a(Array)
-
-
-
   end
 end

@@ -52,7 +52,16 @@ RSpec.describe "Book search endpoint" do
   end
 
   describe "sad path" do
-    xit "returns error when no location is provided" do
+    it "returns error when no location is provided", :vcr do
+      get '/api/v1/book-search?location=&quantity=5'
+
+      book_data = JSON.parse(response.body, symbolize_names: true)
+
+      expect(response.status).to eq(400)
+      expect(book_data).to be_a(Hash)
+      expect(book_data).to have_key :errors
     end
   end
+    xit 'returns 5 books if no quantity is provided' do
+    end
 end
