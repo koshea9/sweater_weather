@@ -37,6 +37,18 @@ RSpec.describe "Book search endpoint" do
       expect(book_data[:data][:attributes]).to have_key(:books)
       expect(book_data[:data][:attributes][:books]).to be_a(Array)
 
+      expect(book_data[:data][:attributes][:books][0]).to be_a(Hash)
+      expect(book_data[:data][:attributes][:books][0]).to have_key(:isbn)
+      expect(book_data[:data][:attributes][:books][0][:isbn]).to be_a(Array)
+      expect(book_data[:data][:attributes][:books][0][:isbn][0]).to be_a(String)
+
+      expect(book_data[:data][:attributes][:books][0]).to have_key(:title)
+      expect(book_data[:data][:attributes][:books][0][:title]).to be_a(String)
+
+      expect(book_data[:data][:attributes][:books][0]).to have_key(:publisher)
+      expect(book_data[:data][:attributes][:books][0][:publisher]).to be_a(Array)
+      expect(book_data[:data][:attributes][:books][0][:publisher][0]).to be_a(String)
+    end
   end
 
   describe "sad path" do
