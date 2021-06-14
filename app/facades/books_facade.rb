@@ -2,6 +2,8 @@ class BooksFacade
 
   def self.books_by_location(location, quantity)
     book_data = BooksService.search_books(location)
+    forecast_data = ForecastsFacade.location_forecast(location)
+    require "pry"; binding.pry
   end
 # total_books_found = book_data[:numFound]
 # books = [
