@@ -61,15 +61,15 @@ RSpec.describe "Forecast by location endpoint" do
     end
   end
 
-  describe "sad path" do
-    it "should handle errors when no location is provided" do
-      VCR.use_cassette("no forecast data response") do
+describe "sad path" do
+  it "should handle errors when no location is provided" do
+    VCR.use_cassette("no forecast data response") do
 
-        get '/api/v1/forecast?location=',
-        headers: {
-          'Content-Type' => 'application/json',
-          'Accept' => 'application/json'
-        }
+      get '/api/v1/forecast?location=',
+      headers: {
+        'Content-Type' => 'application/json',
+        'Accept' => 'application/json'
+      }
       end
       forecast_data = JSON.parse(response.body, symbolize_names: true)
 
