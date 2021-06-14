@@ -10,7 +10,7 @@ RSpec.describe 'Background by location endpoint' do
               'Accept' => 'application/json'
             }
       end
-      background_data = JSON.parse(response.body, symbolize_names: true)
+      background_data = JSON.parse(response.body, symbolize_names: true)[:data]
 
       expect(response).to be_successful
       expect(background_data).to be_a(Hash)
@@ -21,7 +21,7 @@ RSpec.describe 'Background by location endpoint' do
       expect(background_data[:id]).to eq(nil)
 
       expect(background_data[:attributes]).to be_a(Hash)
-      attribute_keys = %i[image credit]
+      attribute_keys = %i[image credit attribution]
       attributes = background_data[:attributes]
 
       expect(attributes[:image]).to be_a(Hash)
@@ -35,6 +35,11 @@ RSpec.describe 'Background by location endpoint' do
       expect(attributes[:credit][:source]).to be_a(String)
       expect(attributes[:credit]).to have_key(:author)
       expect(attributes[:credit][:author]).to be_a(String)
+
+      expect(attributes[:attribution]).to be_a(Hash)
+      expect(attributes[:attribution][:source]).to eq("https://unsplash.com/")
+      expect(attributes[:attribution][:utm_source]).to eq("sweater_weather_app")
+      expect(attributes[:attribution][:utm_referral]).to eq("referral")
     end
   end
 
