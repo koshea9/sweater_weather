@@ -2,14 +2,9 @@ require 'rails_helper'
 
 RSpec.describe 'Background by location endpoint' do
   describe 'happy path' do
-    it 'returns the url of an image corresponding to location' do
-      VCR.use_cassette('Denver background') do
-        get '/api/v1/backgrounds?location=denver,co',
-            headers: {
-              'Content-Type' => 'application/json',
-              'Accept' => 'application/json'
-            }
-      end
+    it 'returns the url of an image corresponding to location', :vcr do
+      get '/api/v1/backgrounds?location=denver,co'
+
       background_data = JSON.parse(response.body, symbolize_names: true)[:data]
 
       expect(response).to be_successful
@@ -44,19 +39,13 @@ RSpec.describe 'Background by location endpoint' do
   end
 
   describe 'sad path' do
-    it 'should handle errors when no location is provided' do
-      VCR.use_cassette('no background data response') do
-        get '/api/v1/backgrounds?location=',
-            headers: {
-              'Content-Type' => 'application/json',
-              'Accept' => 'application/json'
-            }
-      end
-      forecast_data = JSON.parse(response.body, symbolize_names: true)
+    it 'should handle errors when no location is provided', :vcr do
+     get '/api/v1/backgrounds?location='
 
+      image = JSON.parse(response.body, symbolize_names: true)
       expect(response.status).to eq(400)
-      expect(forecast_data).to be_a(Hash)
-      expect(forecast_data).to have_key(:errors)
+      expect(image).to be_a(Hash)
+      expect(image).to have_key(:errors)
     end
   end
 end

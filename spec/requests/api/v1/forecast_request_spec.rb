@@ -2,14 +2,9 @@ require 'rails_helper'
 
 RSpec.describe 'Forecast by location endpoint' do
   describe 'happy path' do
-    it 'sends weather data based on location' do
-      VCR.use_cassette('Denver weather') do
-        get '/api/v1/forecast?location=denver,co',
-            headers: {
-              'Content-Type' => 'application/json',
-              'Accept' => 'application/json'
-            }
-      end
+    it 'sends weather data based on location', :vcr do
+      get '/api/v1/forecast?location=denver,co'
+
       forecast_data = JSON.parse(response.body, symbolize_names: true)
 
       expect(response).to be_successful
@@ -61,14 +56,9 @@ RSpec.describe 'Forecast by location endpoint' do
   end
 
   describe 'sad path' do
-    it 'should handle errors when no location is provided' do
-      VCR.use_cassette('no forecast data response') do
-        get '/api/v1/forecast?location=',
-            headers: {
-              'Content-Type' => 'application/json',
-              'Accept' => 'application/json'
-            }
-      end
+    it 'should handle errors when no location is provided', :vcr do
+      get '/api/v1/forecast?location='
+
       forecast_data = JSON.parse(response.body, symbolize_names: true)
 
       expect(response.status).to eq(400)
