@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe LocationService do
-  describe "class methods" do
+  describe 'class methods' do
     it 'returns latitude and longitude data when given a valid address parameter' do
       VCR.use_cassette('Denver latitude and longitude') do
-        response = LocationService.get_location_data("denver,co")
+        response = LocationService.get_location_data('denver,co')
 
         expect(response).to be_a(Hash)
 

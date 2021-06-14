@@ -1,5 +1,4 @@
 class LocationService
-
   def self.get_location_data(location)
     response = conn.get('/geocoding/v1/address') do |req|
       req.params['location'] = location
@@ -9,10 +8,9 @@ class LocationService
     parse_json(response)
   end
 
-  private
   def self.conn
     Faraday.new(
-      url:'http://www.mapquestapi.com',
+      url: 'http://www.mapquestapi.com',
       params: {
         key: ENV['mapquest_consumer_key']
       }
