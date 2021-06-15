@@ -15,7 +15,7 @@ RSpec.describe "user registration endpoint" do
 
       created_user = User.last
       expect(created_user.email).to eq(user_params[:email])
-      
+
       expect(response).to be_successful
       expect(response.status).to eq(201)
       expect(registered_user_data).to be_a(Hash)
@@ -79,7 +79,7 @@ RSpec.describe "user registration endpoint" do
       expect(registered_user_data[:errors][0][:detail]).to be_a(String)
     end
 
-    it 'returns an error if email field' do
+    it 'returns an error if email field missing' do
       user_params = ({
             "email": "",
             "password": "diffpassword",
