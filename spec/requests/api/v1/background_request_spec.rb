@@ -33,7 +33,7 @@ RSpec.describe 'Background by location endpoint' do
 
       expect(attributes[:attribution]).to be_a(Hash)
       expect(attributes[:attribution][:source]).to eq("https://unsplash.com/")
-      expect(attributes[:attribution][:utm_source]).to eq("sweater_weather_app")
+      expect(attributes[:attribution][:utm_source]).to eq("https://sweater-weather-ko.herokuapp.com")
       expect(attributes[:attribution][:utm_referral]).to eq("referral")
     end
   end

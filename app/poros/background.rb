@@ -29,7 +29,7 @@ class Background
   def attribution_info(data)
     {
       source: "https://unsplash.com/",
-      utm_source: "sweater_weather_app",
+      utm_source: "https://sweater-weather-ko.herokuapp.com",
       utm_referral: "referral"
     }
   end
