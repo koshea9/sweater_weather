@@ -8,7 +8,7 @@ class Api::V1::UsersController < ApplicationController
       render json: { errors: [{
         status: '400',
         detail: "#{error_message(user.errors)}"
-      }] }
+      }] }, status: 400
     end
   end
 
