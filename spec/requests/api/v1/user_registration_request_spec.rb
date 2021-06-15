@@ -102,7 +102,7 @@ RSpec.describe "user registration endpoint" do
       post '/api/v1/users', headers: headers, params: JSON.generate(user_params)
 
       registered_user_data = JSON.parse(response.body, symbolize_names: true)
-      require "pry"; binding.pry
+      
       expect(response.status).to eq(400)
       expect(registered_user_data).to have_key(:errors)
       expect(registered_user_data[:errors][0][:detail]).to be_a(String)
