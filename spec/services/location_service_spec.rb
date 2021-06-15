@@ -60,7 +60,7 @@ RSpec.describe LocationService do
   end
   describe "sad path" do
     it 'an error if given a blank location' do
-      VCR.use_cassette('Denver to seattle directions') do
+      VCR.use_cassette('Denver to nowhere sad path directions') do
         start_city = 'denver,co'
         end_city = ''
         response = LocationService.get_travel_time(start_city, end_city)
