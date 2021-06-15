@@ -13,6 +13,9 @@ RSpec.describe "user registration endpoint" do
 
       registered_user_data = JSON.parse(response.body, symbolize_names: true)
 
+      created_user = User.last
+      expect(created_user.email).to eq(user_params[:email])
+      
       expect(response).to be_successful
       expect(response.status).to eq(201)
       expect(registered_user_data).to be_a(Hash)
@@ -44,7 +47,7 @@ RSpec.describe "user registration endpoint" do
             "password": "password",
             "password_confirmation": "diffpassword"
             })
-      headers = {"CONTENT_TYPE" => "application/json"}
+      headers = {"CONTENT-TYPE" => "application/json"}
       post '/api/v1/users', headers: headers, params: JSON.generate(user_params)
 
       registered_user_data = JSON.parse(response.body, symbolize_names: true)
@@ -66,7 +69,7 @@ RSpec.describe "user registration endpoint" do
             "password": "diffpassword",
             "password_confirmation": "diffpassword"
             })
-      headers = {"CONTENT_TYPE" => "application/json"}
+      headers = {"CONTENT-TYPE" => "application/json"}
       post '/api/v1/users', headers: headers, params: JSON.generate(user_params)
 
       registered_user_data = JSON.parse(response.body, symbolize_names: true)
@@ -82,7 +85,7 @@ RSpec.describe "user registration endpoint" do
             "password": "diffpassword",
             "password_confirmation": "diffpassword"
             })
-      headers = {"CONTENT_TYPE" => "application/json"}
+      headers = {"CONTENT-TYPE" => "application/json"}
       post '/api/v1/users', headers: headers, params: JSON.generate(user_params)
 
       registered_user_data = JSON.parse(response.body, symbolize_names: true)
@@ -98,11 +101,11 @@ RSpec.describe "user registration endpoint" do
             "password": "diffpassword",
             "password_confirmation": "diffpassword"
             })
-      headers = {"CONTENT_TYPE" => "application/json"}
+      headers = {"CONTENT-TYPE" => "application/json"}
       post '/api/v1/users', headers: headers, params: JSON.generate(user_params)
 
       registered_user_data = JSON.parse(response.body, symbolize_names: true)
-      
+
       expect(response.status).to eq(400)
       expect(registered_user_data).to have_key(:errors)
       expect(registered_user_data[:errors][0][:detail]).to be_a(String)
