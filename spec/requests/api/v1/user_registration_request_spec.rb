@@ -8,11 +8,12 @@ RSpec.describe "user registration endpoint" do
           "password_confirmation": "password"
           })
     headers = {"CONTENT_TYPE" => "application/json"}
-    post '/api/v1/users', headers: headers, params: JSON.generate(user: user_params)
+    post '/api/v1/users', headers: headers, params: JSON.generate(user_params)
 
     registered_user_data = JSON.parse(response.body, symbolize_names: true)
 
     expect(response).to be_successful
+    expect(response.status).to eq(201)
     expect(registered_user_data).to be_a(Hash)
     expect(registered_user_data).to have_key(:data)
     expect(registered_user_data[:data]).to be_a(Hash)
