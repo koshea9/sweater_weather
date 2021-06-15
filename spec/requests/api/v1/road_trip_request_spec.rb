@@ -11,7 +11,7 @@ RSpec.describe 'Road Trip Endpoint' do
           }
       headers = {"CONTENT_TYPE" => "application/json"}
 
-      post '/api/v1/road_trip', headers, params: JSON.generate(search_body)
+      post '/api/v1/road_trip', headers: headers, params: JSON.generate(search_body)
 
       road_trip = JSON.parse(response.body, symbolize_names: true)
 
@@ -61,7 +61,7 @@ RSpec.describe 'Road Trip Endpoint' do
           }
       headers = {"CONTENT_TYPE" => "application/json"}
 
-      post '/api/v1/road_trip', headers, params: JSON.generate(search_body)
+      post '/api/v1/road_trip', headers: headers, params: JSON.generate(search_body)
 
       road_trip = JSON.parse(response.body, symbolize_names: true)
 
@@ -81,7 +81,7 @@ RSpec.describe 'Road Trip Endpoint' do
           }
       headers = {"CONTENT_TYPE" => "application/json"}
 
-      post '/api/v1/road_trip', headers, params: JSON.generate(search_body)
+      post '/api/v1/road_trip', headers: headers, params: JSON.generate(search_body)
 
       road_trip = JSON.parse(response.body, symbolize_names: true)
 
