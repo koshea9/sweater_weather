@@ -23,7 +23,7 @@ RSpec.describe Forecast do
     expect(forecast.daily_weather).to be_an(Array)
     expect(forecast.daily_weather[1][:date]).to eq('2021-06-14')
     expect(forecast.daily_weather[1][:sunrise]).to be_a(String) #changed for Travis issue
-    expect(forecast.daily_weather[1][:sunset]).to eq('2021-06-14')
+    expect(forecast.daily_weather[1][:sunset]).to eq(String)
     expect(forecast.daily_weather[1][:max_temp]).to eq(99.03)
     expect(forecast.daily_weather[1][:min_temp]).to eq(70.34)
     expect(forecast.daily_weather[1][:conditions]).to eq('clear sky')
