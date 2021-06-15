@@ -37,5 +37,42 @@ RSpec.describe LocationService do
         expect(response[:results][0][:locations][0]).to_not have_key(:mapUrl)
       end
     end
+
+    it 'returns direction data when given two valid locations' do
+      VCR.use_cassette('Denver to seattle directions') do
+        start_city = 'denver,co'
+        end_city = 'seattle,wa'
+        response = LocationService.get_travel_time(start_city, end_city)
+
+        expect(response).to be_a(Hash)
+        expect(response).to have_key(:route)
+
+        expect(response[:route]).to have_key(:routeError)
+        expect(response[:route][:routeError]).to have_key(:message)
+        expect(response[:route][:routeError][:message]).to be_empty
+
+        expect(response[:route]).to have_key(:legs)
+        expect(response[:route][:legs]).to be_an(Array)
+        expect(response[:route][:legs][0]).to have_key(:formattedTime)
+        expect(response[:route][:legs][0][:formattedTime]).to be_a(String)
+      end
+    end
+  end
+  describe "sad path" do
+    it 'an error if given a blank location' do
+      VCR.use_cassette('Denver to seattle directions') do
+        start_city = 'denver,co'
+        end_city = ''
+        response = LocationService.get_travel_time(start_city, end_city)
+
+        expect(response).to be_a(Hash)
+        expect(response).to have_key(:route)
+
+        expect(response[:route]).to have_key(:routeError)
+        expect(response[:route][:routeError]).to have_key(:message)
+        expect(response[:route][:routeError][:message]).to be_a(String)
+        expect(response[:route]).to_not have_key(:legs)
+      end
+    end
   end
 end
