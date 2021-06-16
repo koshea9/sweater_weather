@@ -23,10 +23,10 @@ RSpec.describe WeatherService do
       expect(response[:current][:sunset]).to be_a(Integer)
       # temperature
       expect(response[:current]).to have_key(:temp)
-      expect(response[:current][:temp]).to be_a(Float)
+      expect(response[:current][:temp]).to be_a(Numeric)
       # feels_like
       expect(response[:current]).to have_key(:feels_like)
-      expect(response[:current][:feels_like]).to be_a(Float)
+      expect(response[:current][:feels_like]).to be_a(Numeric)
       # humidity
       expect(response[:current]).to have_key(:humidity)
       expect(response[:current][:humidity]).to be_a(Integer)
@@ -61,10 +61,10 @@ RSpec.describe WeatherService do
       expect(response[:daily][0]).to have_key(:temp)
       expect(response[:daily][0][:temp]).to be_a(Hash)
       expect(response[:daily][0][:temp]).to have_key(:min)
-      expect(response[:daily][0][:temp][:min]).to be_a(Float)
+      expect(response[:daily][0][:temp][:min]).to be_a(Numeric)
       # min_temp
       expect(response[:daily][0][:temp]).to have_key(:max)
-      expect(response[:daily][0][:temp][:max]).to be_a(Float)
+      expect(response[:daily][0][:temp][:max]).to be_a(Numeric)
       # conditions
       expect(response[:daily][0][:weather][0]).to have_key(:description)
       expect(response[:daily][0][:weather][0][:description]).to be_a(String)
@@ -80,7 +80,7 @@ RSpec.describe WeatherService do
       expect(response[:hourly][0][:dt]).to be_a(Integer)
       # temperature
       expect(response[:hourly][0]).to have_key(:temp)
-      expect(response[:hourly][0][:temp]).to be_a(Float)
+      expect(response[:hourly][0][:temp]).to be_a(Numeric)
       # conditions
       expect(response[:hourly][0][:weather][0]).to have_key(:description)
       expect(response[:hourly][0][:weather][0][:description]).to be_a(String)

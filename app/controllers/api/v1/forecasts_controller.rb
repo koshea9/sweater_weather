@@ -5,7 +5,7 @@ class Api::V1::ForecastsController < ApplicationController
       render json: { errors: [{
         status: '400',
         detail: 'location cannot be blank'
-      }] }, status: 400
+        }] }, status: 400
     else
       forecast = ForecastsFacade.location_forecast(location)
       render json: ForecastSerializer.new(forecast)
