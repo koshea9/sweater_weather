@@ -1,8 +1,12 @@
 class ForecastsFacade
   def self.location_forecast(location)
-    coordinates = get_coordinates(location)
-    weather_data = WeatherService.get_weather_data(coordinates[:lat], coordinates[:lng])
+    weather_data = get_all_location_forecast(location)
     Forecast.new(weather_data)
+  end
+
+  def self.get_all_location_forecast(location)
+    coordinates = get_coordinates(location)
+    WeatherService.get_weather_data(coordinates[:lat], coordinates[:lng])
   end
 
   def self.get_coordinates(location)

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Road Trip Endpoint' do
   describe 'happy path' do
-    it 'displays data for the searched route' do
+    it 'displays data for the searched route', :vcr do
       road_trip_user = User.create!(email: "road_trip@test.com", password: "road_triptest", api_key: "jgn983hy48thw9begh98h4539h4")
       search_body = {
           "origin": "Denver,CO",
@@ -12,7 +12,6 @@ RSpec.describe 'Road Trip Endpoint' do
       headers = {"CONTENT_TYPE" => "application/json"}
 
       post '/api/v1/road_trip', headers: headers, params: JSON.generate(search_body)
-
       road_trip = JSON.parse(response.body, symbolize_names: true)
 
       expect(response).to be_successful
@@ -31,11 +30,11 @@ RSpec.describe 'Road Trip Endpoint' do
 
       expect(road_trip[:data][:attributes]).to have_key(:start_city)
       expect(road_trip[:data][:attributes][:start_city]).to be_a(String)
-      expect(road_trip[:data][:attributes][:start_city]).to eq(search_body["origin"])
+      expect(road_trip[:data][:attributes][:start_city]).to eq(search_body[:origin])
 
       expect(road_trip[:data][:attributes]).to have_key(:end_city)
       expect(road_trip[:data][:attributes][:end_city]).to be_a(String)
-      expect(road_trip[:data][:attributes][:end_city]).to eq(search_body["destination"])
+      expect(road_trip[:data][:attributes][:end_city]).to eq(search_body[:destination])
 
       expect(road_trip[:data][:attributes]).to have_key(:travel_time)
       expect(road_trip[:data][:attributes][:travel_time]).to be_a(String)
@@ -52,7 +51,7 @@ RSpec.describe 'Road Trip Endpoint' do
   end
 
   describe 'sad path' do
-    it 'returns a 401 is no api key provided' do
+    it 'returns a 401 is no api key provided', :vcr do
       road_trip_user = User.create!(email: "road_trip@test.com", password: "road_triptest", api_key: "jgn983hy48thw9begh98h4539h4")
       search_body = {
           "origin": "Denver,CO",
@@ -66,13 +65,13 @@ RSpec.describe 'Road Trip Endpoint' do
       road_trip = JSON.parse(response.body, symbolize_names: true)
 
       expect(response.status).to eq(401)
-      expect(login_user_data).to have_key(:errors)
-      expect(login_user_data[:errors][0][:detail]).to be_a(String)
+      expect(road_trip).to have_key(:errors)
+      expect(road_trip[:errors][0][:detail]).to be_a(String)
     end
   end
 
   describe 'edge cases' do
-    it 'returns empty weather data and impossible trip time if route not possible' do
+    it 'returns empty weather data and impossible trip time if route not possible', :vcr do
       road_trip_user = User.create!(email: "road_trip@test.com", password: "road_triptest", api_key: "jgn983hy48thw9begh98h4539h4")
       search_body = {
           "origin": "Denver,CO",
@@ -101,14 +100,14 @@ RSpec.describe 'Road Trip Endpoint' do
 
       expect(road_trip[:data][:attributes]).to have_key(:start_city)
       expect(road_trip[:data][:attributes][:start_city]).to be_a(String)
-      expect(road_trip[:data][:attributes][:start_city]).to eq(search_body["origin"])
+      expect(road_trip[:data][:attributes][:start_city]).to eq(search_body[:origin])
 
       expect(road_trip[:data][:attributes]).to have_key(:end_city)
       expect(road_trip[:data][:attributes][:end_city]).to be_a(String)
-      expect(road_trip[:data][:attributes][:end_city]).to eq(search_body["destination"])
+      expect(road_trip[:data][:attributes][:end_city]).to eq(search_body[:destination])
 
       expect(road_trip[:data][:attributes]).to have_key(:travel_time)
-      expect(road_trip[:data][:attributes][:travel_time]).to eq("impossible")
+      expect(road_trip[:data][:attributes][:travel_time]).to eq("impossible route")
 
       expect(road_trip[:data][:attributes]).to have_key(:weather_at_eta)
       expect(road_trip[:data][:attributes][:weather_at_eta]).to be_a(Hash)
