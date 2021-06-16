@@ -69,7 +69,7 @@ RSpec.describe 'Road Trip Endpoint' do
       expect(road_trip[:errors][0][:detail]).to be_a(String)
     end
 
-    it 'returns a 401 is wrong api key provided', :vcr do
+    it 'returns a 401 if wrong api key provided', :vcr do
       road_trip_user = User.create!(email: "road_trip@test.com", password: "road_triptest", api_key: "jgn983hy48thw9begh98h4539h4")
       search_body = {
           "origin": "Denver,CO",
@@ -83,6 +83,42 @@ RSpec.describe 'Road Trip Endpoint' do
       road_trip = JSON.parse(response.body, symbolize_names: true)
 
       expect(response.status).to eq(401)
+      expect(road_trip).to have_key(:errors)
+      expect(road_trip[:errors][0][:detail]).to be_a(String)
+    end
+
+    it 'returns a 400 if origin location missing', :vcr do
+      road_trip_user = User.create!(email: "road_trip@test.com", password: "road_triptest", api_key: "jgn983hy48thw9begh98h4539h4")
+      search_body = {
+          "origin": "",
+          "destination": "Pueblo,CO",
+          "api_key": "jgn983hy48thw9begh98h4539h4"
+          }
+      headers = {"CONTENT_TYPE" => "application/json"}
+
+      post '/api/v1/road_trip', headers: headers, params: JSON.generate(search_body)
+
+      road_trip = JSON.parse(response.body, symbolize_names: true)
+
+      expect(response.status).to eq(400)
+      expect(road_trip).to have_key(:errors)
+      expect(road_trip[:errors][0][:detail]).to be_a(String)
+    end
+
+    it 'returns a 400 if destination location missing', :vcr do
+      road_trip_user = User.create!(email: "road_trip@test.com", password: "road_triptest", api_key: "jgn983hy48thw9begh98h4539h4")
+      search_body = {
+          "origin": "Pueblo,CO",
+          "destination": "",
+          "api_key": "jgn983hy48thw9begh98h4539h4"
+          }
+      headers = {"CONTENT_TYPE" => "application/json"}
+
+      post '/api/v1/road_trip', headers: headers, params: JSON.generate(search_body)
+
+      road_trip = JSON.parse(response.body, symbolize_names: true)
+
+      expect(response.status).to eq(400)
       expect(road_trip).to have_key(:errors)
       expect(road_trip[:errors][0][:detail]).to be_a(String)
     end

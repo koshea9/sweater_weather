@@ -3,29 +3,18 @@ class Api::V1::RoadTripController < ApplicationController
     start_city = params[:origin]
     end_city = params[:destination]
     user = User.find_by_api_key(params[:api_key])
-    road_trip_data = RoadTripFacade.get_road_trip_data(start_city, end_city)
-    if user && start_city && end_city
+    if user && !start_city.blank? && !end_city.blank?
+      road_trip_data = RoadTripFacade.get_road_trip_data(start_city, end_city)
       render json: RoadTripSerializer.new(road_trip_data)
     else
-      render json: error_message, status: 401
+      error_message(start_city, end_city, user)
     end
   end
 
   private
-  def error_message
-    user = User.find_by_api_key(params[:api_key])
-    if params[:origin].blank?
-      {
-      errors: [{
-      status: '400',
-      detail: 'start city cannot be blank'
-      }] }
-    elsif params[:destination].blank?
-      {
-      errors: [{
-      status: '400',
-      detail: 'end city cannot be blank'
-      }] }
+  def error_message(start_city, end_city, user)
+    if start_city.blank? || end_city.blank?
+      raise LocationMissing
     elsif params[:api_key].blank? || !user
       raise InvalidCredentials
     end
