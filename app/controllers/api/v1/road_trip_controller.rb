@@ -13,6 +13,7 @@ class Api::V1::RoadTripController < ApplicationController
 
   private
   def error_message
+    user = User.find_by_api_key(params[:api_key])
     if params[:origin].blank?
       {
       errors: [{
