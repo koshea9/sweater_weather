@@ -1,19 +1,55 @@
-### Project Description
-You are a back-end developer working on a team that is building an application to plan road trips. This app will allow users to see the current weather as well as the forecasted weather at the destination.
+# Sweater Weather Description
+> Sweater Weather is a backend application that allows users to see the current weather as well as the forecasted wather at their chosen destinatation. It is based on a service-oriented architecture, exposing API endpoints for the front-end teams use.
 
-Your team is working in a service-oriented architecture. The front-end will communicate with your back-end through an API. Your job is to expose that API that satisfies the front-end team’s requirements.
+[![Build Status][travis-image]][travis-url]
 
-### Learning Goals
-Expose an API that aggregates data from multiple external APIs
-Expose an API that requires an authentication token
-Expose an API for CRUD functionality
-Determine completion criteria based on the needs of other developers
-Research, select, and consume an API based on your needs as a developer
 
-### APIs 
+## Learning Goals
+* Expose an API that aggregates data from multiple external APIs
+* Expose an API that requires an authentication token
+* Expose an API for CRUD functionality
+* Determine completion criteria based on the needs of other developers
+* Research, select, and consume an API based on your needs as a developer
+
+## Versions
+- Ruby 2.5.3
+
+## Usage example
+
+ 
+
+
+## Development setup
+
+1. Fork and Clone the repo
+2. Install gem packages: `bundle install`
+3. Setup the database: `rails db:create`
+4. Add protected storage for API keys using installed [figaro gem](https://github.com/laserlemon/figaro): `bundle exec figaro install`
+6. Add your API keys to the `config/application.yml` file (links to obtain below)
+
+``` ruby
+# config/application.yml
+
+mapquest_consumer_key: <your api key here>
+mapquest_consumer_secret: <your api key here>
+
+open_weather_api_key: <your api key here>
+
+unsplash_access_key: <your api key here>
+unsplash_secret_key: <your api key here>
+```
+6. Run test suite with `bundle exec rspec`
+
+## APIs 
 [Map Quest](https://developer.mapquest.com/documentation/geocoding-api/)
 
 [OpenWeather](https://openweathermap.org/api/one-call-api)
 
 [Unsplash](https://unsplash.com/documentation)
 
+
+
+<!-- Markdown link & img dfn's -->  
+[travis-image]: https://img.shields.io/travis/dbader/node-datadog-metrics/master.svg?style=flat-square
+[travis-url]: https://travis-ci.com/github/koshea9/sweater_weather
+[wiki]: https://github.com/yourname/yourproject/wiki
