@@ -9,6 +9,7 @@ script:
 services:
 - postgresql
 deploy:
+  skip_cleanup: 'true'
   provider: heroku
   api_key:
     secure: GiZXccosbgAIyjQKLd0LFwcpUEPeHyrWBBF6npL+gQa24EJJyBHVrYORsAPiYN6OUKlZXT7cCu85G9wl89CIbut2sg1pr+lYdaEI6sxPh3NpdyDjSVo9VpL44k35bZIVhnH7GxD7SgQfwktP1kVNfHtnXYfAwBZS2OOWkJZMAqaZgfqCo+OzQsSV3/PkXVGVioThTW69PAKd6ISr2Ywsq7nxiHNVVr2GZ8ETCCMxe+8ck+dMIHS0XSrVdO7vMGidVKfa8cfnEs6HTWWfy5y1Urb3crzQFLOlQPhMLwNhLvbe0i3oe/fxWnP5D/m9dKltVMq6kihi4htuB/5VEXuLZ+BslyjrhbWjz3xBSp4NMBbN/b6hgUVD7UowMNr8ZSGZU2Fwwk8zAiA3P3O4iI41K5gOLBTYMucsuonMAfkNKWsclULepb6+uE8CRyQDRKdwQ1EwTk/Z8s51iCFAxoZEXDzZ/1f16KyzSE7Aa4m7vZbUNn7ZeQRWbYUaDNHzBaOnOP6A3pyaUsNfvF0ptAfOPf8qcDPxC5zH0A06OfWZcK+AXiig3uH9JGSS0wJ9jQOpYk/Z+TKjK/3zxiLGJZCN5tZDqYDawh30DLfSIMChddBz63m2WJW+iBiSUyfUdFkc/5ZPxdAjmgTKJTIAF3YjcuBA9fksueBoYktt+kgEC9k=
@@ -16,4 +17,3 @@ deploy:
   on:
     repo: koshea9/sweater_weather
     branch: main
-    skip_cleanup: 'true'
