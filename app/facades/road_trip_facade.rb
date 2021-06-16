@@ -9,7 +9,7 @@ class RoadTripFacade
   def self.calculate_travel_time(start_city, end_city)
     data = LocationService.get_travel_time(start_city, end_city)
     if data[:info][:messages][0].blank?
-      LocationService.get_travel_time(start_city, end_city)[:route][:legs][0][:formattedTime]
+      data[:route][:legs][0][:formattedTime]
     else
       "impossible route"
     end
