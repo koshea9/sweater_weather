@@ -27,11 +27,7 @@ class Api::V1::RoadTripController < ApplicationController
       detail: 'end city cannot be blank'
       }] }
     elsif params[:api_key].blank? || !user
-      {
-      errors: [{
-      status: '400',
-      detail: 'Invalid credentials, please try again'
-      }] }
+      raise InvalidCredentials
     end
   end
 end
