@@ -1,5 +1,5 @@
 class Api::V1::RoadTripController < ApplicationController
-  def show
+  def create
     start_city = params[:origin]
     end_city = params[:destination]
     user = User.find_by_api_key(params[:api_key])
