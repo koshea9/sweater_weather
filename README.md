@@ -16,8 +16,46 @@
 
 ## Usage example
 
- 
+#### POST Road Trip
 
+##### Resource URL
+```
+https://sweater-weather-ko.herokuapp.com/api/v1/road_trip
+```
+Request Parameters:
+| Request Parameter | Description | Required? |
+| --- | --- | --- |
+| **api_key** string | API key provided after registration | Yes - must be sent in body of request |
+| **origin** string | City and state where road trip begins | Yes - must be sent in body of request |
+| **destination** string | City and state where road trip ends. Must be sent in body of request. | Yes - must be sent in body of request |
+
+Example Request:
+```json
+{
+  "origin": "Denver,CO",
+  "destination": "New York, NY",
+  "api_key": "PvMs2mOvDYWwEIs_dNGLLQ"
+}
+```
+
+Example Response:
+```json
+{
+    "data": {
+        "id": null,
+        "type": "road_trip",
+        "attributes": {
+            "start_city": "Denver,CO",
+            "end_city": "New York, NY",
+            "travel_time": "26:16:46",
+            "weather_at_eta": {
+                "temperature": 74.08,
+                "conditions": "clear sky"
+            }
+        }
+    }
+}
+```
 
 ## Development setup
 
