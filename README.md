@@ -40,6 +40,7 @@ https://sweater-weather-ko.herokuapp.com/api/v1/backgrounds?location=denver,co
 <details>
   <summary>Example Response (click to open)</summary>
   <p>
+    
 ```json
 {
     "data": {
@@ -62,7 +63,7 @@ https://sweater-weather-ko.herokuapp.com/api/v1/backgrounds?location=denver,co
         }
     }
 }
-```
+\```
   </p>
   </details>
 
@@ -82,6 +83,7 @@ https://sweater-weather-ko.herokuapp.com/api/v1/forecast?location=denver,co
 <details>
   <summary>Example Response (click to open)</summary>
   <p>
+    
 ```json
 {
     "data": {
@@ -200,7 +202,7 @@ https://sweater-weather-ko.herokuapp.com/api/v1/forecast?location=denver,co
         }
     }
 }
-```
+\```
       </p>
   </details>
   
@@ -229,6 +231,7 @@ Example Request:
 <details>
   <summary>Example Response (click to open)</summary>
   <p>
+    
 ```json
 {
     "data": {
@@ -240,7 +243,7 @@ Example Request:
         }
     }
 }
-```
+\```
 </p>
 </details>
 
@@ -278,7 +281,7 @@ Example Request:
         }
     }
 }
-```
+\```
 </p>
 </details>
 
@@ -322,7 +325,7 @@ Example Request:
         }
     }
 }
-```
+\```
 </p>
 </details>
 
