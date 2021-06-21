@@ -15,12 +15,12 @@
 - Ruby 2.5.3
 
 ## Endpoint Examples
-- GET Background
-- GET Forecast
-- POST User Registration
-- POST User Login
-- GET Road Trip
-- 
+- [GET Background](https://github.com/koshea9/sweater_weather/blob/main/README.md#get-background)
+- [GET Forecast](https://github.com/koshea9/sweater_weather/blob/main/README.md#get-forecast)
+- [POST User Registration](https://github.com/koshea9/sweater_weather/blob/main/README.md#post-user-registration)
+- [POST User Login](https://github.com/koshea9/sweater_weather/blob/main/README.md#post-user-login)
+- [GET Road Trip](https://github.com/koshea9/sweater_weather/blob/main/README.md#get-road-trip)
+
 #### GET Background
 
 ##### Resource URL
