@@ -37,10 +37,8 @@ Example Request:
 ```
 https://sweater-weather-ko.herokuapp.com/api/v1/backgrounds?location=denver,co
 ```
-<details>
-  <summary>Example Response (click to open)</summary>
-  <p>
-    
+
+Example Response:    
 ```json
 {
     "data": {
@@ -63,10 +61,7 @@ https://sweater-weather-ko.herokuapp.com/api/v1/backgrounds?location=denver,co
         }
     }
 }
-\```
-  </p>
-  </details>
-
+```
 ##### Resource URL
 ```
 https://sweater-weather-ko.herokuapp.com/api/v1/forecast
@@ -80,10 +75,9 @@ Example Request:
 ```
 https://sweater-weather-ko.herokuapp.com/api/v1/forecast?location=denver,co
 ```
-<details>
-  <summary>Example Response (click to open)</summary>
-  <p>
-    
+
+Example Response:
+   
 ```json
 {
     "data": {
@@ -202,10 +196,8 @@ https://sweater-weather-ko.herokuapp.com/api/v1/forecast?location=denver,co
         }
     }
 }
-\```
-      </p>
-  </details>
-  
+```
+ 
 #### POST User Registration
 
 ##### Resource URL
@@ -228,9 +220,8 @@ Example Request:
   "password_confirmation": "password"
 }
 ```
-<details>
-  <summary>Example Response (click to open)</summary>
-  <p>
+
+Example Response:
     
 ```json
 {
@@ -243,10 +234,7 @@ Example Request:
         }
     }
 }
-\```
-</p>
-</details>
-
+```
 #### POST User Login
 
 ##### Resource URL
@@ -267,9 +255,8 @@ Example Request:
 }
 ```
 
-<details>
-  <summary>Example Response (click to open)</summary>
-  <p>
+Example Response:
+
 ```json
 {
     "data": {
@@ -281,9 +268,7 @@ Example Request:
         }
     }
 }
-\```
-</p>
-</details>
+```
 
 #### POST Road Trip
 
@@ -306,9 +291,8 @@ Example Request:
   "api_key": "PvMs2mOvDYWwEIs_dNGLLQ"
 }
 ```
-<details>
-  <summary>Example Response (click to open)</summary>
-  <p>
+
+Example Response:
 ```json
 {
     "data": {
@@ -325,9 +309,7 @@ Example Request:
         }
     }
 }
-\```
-</p>
-</details>
+```
 
 ## Development setup
 
