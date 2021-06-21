@@ -21,6 +21,8 @@
 - [POST User Login](https://github.com/koshea9/sweater_weather/blob/main/README.md#post-user-login)
 - [POST Road Trip](https://github.com/koshea9/sweater_weather/blob/main/README.md#post-road-trip)
 
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/5da3a4a7ec011046861c?action=collection%2Fimport)
+
 #### GET Background
 
 ##### Resource URL
