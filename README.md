@@ -19,7 +19,7 @@
 - [GET Forecast](https://github.com/koshea9/sweater_weather/blob/main/README.md#get-forecast)
 - [POST User Registration](https://github.com/koshea9/sweater_weather/blob/main/README.md#post-user-registration)
 - [POST User Login](https://github.com/koshea9/sweater_weather/blob/main/README.md#post-user-login)
-- [GET Road Trip](https://github.com/koshea9/sweater_weather/blob/main/README.md#get-road-trip)
+- [POST Road Trip](https://github.com/koshea9/sweater_weather/blob/main/README.md#post-road-trip)
 
 #### GET Background
 
@@ -62,6 +62,8 @@ Example Response:
     }
 }
 ```
+#### GET Forecast
+
 ##### Resource URL
 ```
 https://sweater-weather-ko.herokuapp.com/api/v1/forecast
@@ -197,7 +199,6 @@ Example Response:
     }
 }
 ```
- 
 #### POST User Registration
 
 ##### Resource URL
@@ -269,7 +270,6 @@ Example Response:
     }
 }
 ```
-
 #### POST Road Trip
 
 ##### Resource URL
