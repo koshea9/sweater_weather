@@ -1,5 +1,5 @@
 # Sweater Weather Description
-> Sweater Weather is a backend application that allows users to see the current weather as well as the forecasted wather at their chosen destinatation. It is based on a service-oriented architecture, exposing API endpoints for the front-end teams use.
+> Sweater Weather is a backend application that allows users to see the current weather as well as the forecasted weather at their chosen destination. It is based on a service-oriented architecture, exposing API endpoints for the front-end teams use.
 
 [![Build Status][travis-image]][travis-url]
 
